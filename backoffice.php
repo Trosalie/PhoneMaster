@@ -8,7 +8,9 @@
 
     $query = "SELECT * FROM $nomtable";
     $resultat = mysqli_query($link,$query);
-    $i = 0;
+    $i = 1;
+
+    
 
     while($donnee = mysqli_fetch_assoc($resultat)){
         $id = $donnee["id"];
@@ -19,14 +21,30 @@
         $i++;
     }
     print "<input type=submit value=\"Valider les changements\"></form>";
-
-    if(isset($_POST["modele1"]) and isset($_POST["marque1"]) and isset($_POST["prix1"])){
-        for($indice = 1; $indice <= $i; $indice++){
-            print $indice;
-            //$query = "UPDATE Telephone SET 'modele' = $_POST["modele$i"], 'marque' = $_POST["marque$i"], 'prix' = $_POST["prix$i"] WHERE 'id' = $_POST["id$i"]";
-        }
-    }
-
     $resultat -> free_result();
+    
+    //$resultatUp = mysqli_query($link,$query);
+
+    //if(isset($_POST["modele0"]) and isset($_POST["marque0"]) and isset($_POST["prix0"])){
+        for($indice = 1; $indice < $i; $indice++){
+            //$id = $indice + 1;
+            $modele = "modele".$indice;
+            $marque = "marque".$indice;
+            $prix = "prix".$indice;
+            $values = [$_POST[$modele], $_POST[$marque], $_POST[$prix], $indice];
+            $query = $link->prepare("UPDATE Telephone SET modele = (?), marque = (?), prix = (?) WHERE id = (?)");
+            $query->bind_param('ssdi', $_POST[$modele], $_POST[$marque], $_POST[$prix], $indice);
+            $query->execute();
+            // $query = "UPDATE Telephone SET ". "modele = $_POST[$modele], marque = $_POST[$marque], prix = $_POST[$prix] WHERE id = $_POST[$id]";
+            // if ($link->query($query) === TRUE) { 
+            //     echo "Enregistrement mis à jour avec succès"; 
+            // } else { 
+            //     echo "Erreur lors de la mise à jour de l'enregistrement : " . $link->error; 
+            // }
+        }
+    //}
+    
+
+    
     $link -> close();
 ?>
