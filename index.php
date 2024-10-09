@@ -1,4 +1,6 @@
-<html> <head> <title>Formulaire d'identification</title> </head>
+
+
+<html> <head> <title>PhoneMaster</title> </head>
     <body>
         <form action="login.php" method="post">
             Votre login : <input type="text" name="login">
