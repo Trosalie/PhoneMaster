@@ -17,7 +17,7 @@
         $modele = $donnee["modele"];
         $marque = $donnee["marque"];
         $prix = $donnee["prix"];
-        print "<form action=modificationBD.php method=post>Id <input type=text name=id$i value=$id disabled> Modele <input type=text name=modele$i value=\"$modele\"> | Marque <input type=text name=marque$i value=$marque> | Prix <input type=text name=prix$i value=$prix> €<br><br>";
+        print "<form action=modificationBD.php method=post>Id <input type=text name=id$i value=$id readonly=readonly> Modele <input type=text name=modele$i value=\"$modele\"> | Marque <input type=text name=marque$i value=$marque> | Prix <input type=text name=prix$i value=$prix> €<br><br>";
         $i++;
     }
     print "<input type=submit value=\"Valider les changements\"></form>";
@@ -27,13 +27,12 @@
 
     if(isset($_POST["modele1"])){
         for($indice = 1; $indice < $i; $indice++){
-            //$id = $indice + 1;
+            $id = "id".$indice;
             $modele = "modele".$indice;
             $marque = "marque".$indice;
             $prix = "prix".$indice;
-            $values = [$_POST[$modele], $_POST[$marque], $_POST[$prix], $indice];
             $query = $link->prepare("UPDATE Telephone SET modele = (?), marque = (?), prix = (?) WHERE id = (?)");
-            $query->bind_param('ssdi', $_POST[$modele], $_POST[$marque], $_POST[$prix], $indice);
+            $query->bind_param('ssdi', $_POST[$modele], $_POST[$marque], $_POST[$prix], $_POST[$id]);
             $query->execute();
             echo '<meta http-equiv="refresh" content="0;URL=backoffice.php">';
         }
@@ -41,3 +40,4 @@
     
     $link -> close();
 ?>
+<button onclick="window.location.href='backoffice.php';" >Retour</button>

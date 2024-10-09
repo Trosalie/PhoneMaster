@@ -1,9 +1,4 @@
 <?php
-print "<head>
-<meta charset=UTF-8>
-<meta http-equiv=Expires content=\"Thu, 01 Jan 1970 00:00:00 GMT\">
-<title>Disable Browser Caching</title>
-</head>";
     $bdd = "koulai001_bd"; // Base de données 
     $host = "lakartxela.iutbayonne.univ-pau.fr";
     $user = "koulai001_bd"; // Utilisateur 
