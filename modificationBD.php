@@ -4,6 +4,7 @@
         header("location: index.php");
         exit();
     }
+    print "<head> <title>Modification de la BD</title> </head>";
     $bdd = "koulai001_bd"; // Base de données 
     $host = "lakartxela.iutbayonne.univ-pau.fr";
     $user = "koulai001_bd"; // Utilisateur 

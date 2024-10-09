@@ -5,8 +5,9 @@
         exit();
     }
 ?>
-
+<head> <title>Ajouter un enregistrement</title> </head>
 <main>
+
     <form action="ajoutBD.php" method="POST">
         <input type=text name=id placeholder=id>
         <input type=text name=modele placeholder=modele>

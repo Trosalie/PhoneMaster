@@ -1,4 +1,10 @@
 <?php
+    session_start();
+    if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
+        header("location: index.php");
+        exit();
+    }
+    print "<head> <title>Back-office</title> </head>";
     $bdd = "koulai001_bd"; // Base de données 
     $host = "lakartxela.iutbayonne.univ-pau.fr";
     $user = "koulai001_bd"; // Utilisateur 
