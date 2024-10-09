@@ -27,4 +27,5 @@
         <button onclick="window.location.href='modificationBD.php';" >Modifier la base de données</button>
         <button onclick="window.location.href='supprimerBD.php';" >Supprimer un enregistrement</button>
     </div>
+    <button onclick="window.location.href='logout.php';" >Se déconnecter</button>
 </main>

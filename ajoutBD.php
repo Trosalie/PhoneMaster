@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
+        header("location: index.php");
+        exit();
+    }
+?>
 
 <main>
     <form action="ajoutBD.php" method="POST">
@@ -46,3 +53,8 @@
     $resultat -> free_result();
     $link -> close();
 ?>
+<main>       
+    <div>
+    <button onclick="window.location.href='backoffice.php';" >Retour</button>
+    </div>
+</main>
