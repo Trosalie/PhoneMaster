@@ -23,7 +23,8 @@
 
 <main>       
     <div>
-    <button onclick="window.location.href='modificationBD.php';" >Modifier la base de données</button>
-    <button onclick="window.location.href='supprimerBD.php';" >Supprimer un enregistrement</button>
+        <button onclick="window.location.href='ajoutBD.php';" >Ajouter un enregistrement</button>
+        <button onclick="window.location.href='modificationBD.php';" >Modifier la base de données</button>
+        <button onclick="window.location.href='supprimerBD.php';" >Supprimer un enregistrement</button>
     </div>
 </main>
