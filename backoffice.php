@@ -12,7 +12,7 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
     
     <title>Back-office</title>
 </head>
-<main>      
+<main>   
 <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -34,7 +34,16 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
         $modele = $donnee["modele"];
         $marque = $donnee["marque"];
         $prix = $donnee["prix"];
-        print "$id | $modele |  $marque |  $prix<br><br>";
+        print "<div class=\"card text-bg-info mb-3\">
+                    <div class=\"card-header\">
+                        $modele
+                    </div>
+                    <ul class=\"list-group list-group-flush\">
+                        <li class=\"list-group-item\">$id</li>
+                        <li class=\"list-group-item\">$marque</li>
+                        <li class=\"list-group-item\">$prix</li>
+                    </ul>
+                </div>";
     }
 
     $resultat -> free_result();
@@ -42,11 +51,16 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
     ?>
  
                             <div>
-                                <button onclick="window.location.href='ajoutBD.php';" >Ajouter un enregistrement</button>
-                                <button onclick="window.location.href='modificationBD.php';" >Modifier la base de données</button>
-                                <button onclick="window.location.href='supprimerBD.php';" >Supprimer un enregistrement</button>
+                                <p>
+                                <p>
+                                <button onclick="window.location.href='ajoutBD.php';"  class="btn btn-primary">Ajouter un enregistrement</button>
+                                <p>
+                                <button onclick="window.location.href='modificationBD.php';" class="btn btn-primary">Modifier la base de données</button>
+                                <p>
+                                <button onclick="window.location.href='supprimerBD.php';" class="btn btn-primary">Supprimer un enregistrement</button>
+                                <p>
                             </div>
-                            <button onclick="window.location.href='logout.php';" >Se déconnecter</button>
+                            <button onclick="window.location.href='logout.php';" class="btn text-bg-secondary">Se déconnecter</button>
                         </div>
                     </div>
                 </div>

@@ -20,13 +20,15 @@
                             <label class="fs-2">Ajouter un enregistrement</label>
                             <br/><br/>
                             <form action="ajoutBD.php" method="POST">
-                                <input type=text name=id placeholder=id>
-                                <input type=text name=modele placeholder=modele>
-                                <input type=text name=marque placeholder=marque>
-                                <input type=text name=prix placeholder=prix>
-                                <br/><br/>
+                            <div class="input-group mb-3">
+                                <input class="input-group-text" type=text name=id placeholder=id>
+                                <input class="input-group-text" type=text name=modele placeholder=modele>
+                                <input class="input-group-text" type=text name=marque placeholder=marque>
+                                <input class="input-group-text" type=text name=prix placeholder=prix>
+                            </div>
                                 <input type=submit value=Ajouter class="btn btn-primary">
                             </form>
+                            <button onclick="window.location.href='backoffice.php';" class="btn text-bg-danger" >Retour</button>
                         </div>
                     </div>
                 </div>
@@ -53,7 +55,7 @@
         while($donnee = mysqli_fetch_assoc($resultat)){
             $idBD = $donnee["id"];
             if($id == $idBD){
-                print "Identifiant NON valide !";
+                echo '<body onLoad="alert(\'ID existant dans la base de données\')">';
                 $resultat -> free_result();
                 $link -> close();
                 exit();
@@ -71,8 +73,3 @@
     $resultat -> free_result();
     $link -> close();
 ?>
-<main>       
-    <div>
-    <button onclick="window.location.href='backoffice.php';" >Retour</button>
-    </div>
-</main>

@@ -12,7 +12,11 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
     
     <title>Modification de la BD</title> 
     </head>
-
+    <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card text-black" style="border-radius: 1rem;">
+                        <div class="card-body p-5 text-center">
 <?php
     $bdd = "koulai001_bd"; // Base de données 
     $host = "lakartxela.iutbayonne.univ-pau.fr";
@@ -32,10 +36,21 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
         $modele = $donnee["modele"];
         $marque = $donnee["marque"];
         $prix = $donnee["prix"];
-        print "<form action=modificationBD.php method=post>Id <input type=text name=id$i value=$id readonly=readonly> Modele <input type=text name=modele$i value=\"$modele\"> | Marque <input type=text name=marque$i value=$marque> | Prix <input type=text name=prix$i value=$prix> €<br><br>";
+        print "<form action=modificationBD.php method=post>
+        <div class=\"card text-bg-info mb-3\">
+            <div class=\"card-header\">
+                Modele <input type=text name=modele$i value=\"$modele\"> 
+            </div>
+            <ul class=\"list-group list-group-flush\">
+                            <li class=\"list-group-item\">Id <input type=text name=id$i value=$id readonly=readonly></li>
+                            <li class=\"list-group-item\">Marque <input type=text name=marque$i value=$marque></li>
+                            <li class=\"list-group-item\">Prix <input type=text name=prix$i value=$prix> €</li>
+            </ul>
+        </div>
+        <br><br>";
         $i++;
     }
-    print "<input type=submit value=\"Valider les changements\"></form>";
+    print "<input type=submit value=\"Valider les changements\" class=\"btn btn-primary\"></form>";
     $resultat -> free_result();
     
     //$resultatUp = mysqli_query($link,$query);
@@ -55,4 +70,9 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
     
     $link -> close();
 ?>
-<button onclick="window.location.href='backoffice.php';" >Retour</button>
+<button onclick="window.location.href='backoffice.php';" class="btn text-bg-danger" >Retour</button>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
