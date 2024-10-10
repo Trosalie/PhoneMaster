@@ -12,14 +12,26 @@
     <title>Ajouter un enregistrement</title> 
     </head>
 <main>
-
-    <form action="ajoutBD.php" method="POST">
-        <input type=text name=id placeholder=id>
-        <input type=text name=modele placeholder=modele>
-        <input type=text name=marque placeholder=marque>
-        <input type=text name=prix placeholder=prix>
-        <input type=submit value=Ajouter>
-    </form>
+<div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card text-black" style="border-radius: 1rem;">
+                        <div class="card-body p-5 text-center">
+                            <label class="fs-2">Ajouter un enregistrement</label>
+                            <br/><br/>
+                            <form action="ajoutBD.php" method="POST">
+                                <input type=text name=id placeholder=id>
+                                <input type=text name=modele placeholder=modele>
+                                <input type=text name=marque placeholder=marque>
+                                <input type=text name=prix placeholder=prix>
+                                <br/><br/>
+                                <input type=submit value=Ajouter class="btn btn-primary">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 <?php
     $bdd = "koulai001_bd"; // Base de données 
     $host = "lakartxela.iutbayonne.univ-pau.fr";

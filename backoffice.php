@@ -12,6 +12,12 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
     
     <title>Back-office</title>
 </head>
+<main>      
+<div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card text-black" style="border-radius: 1rem;">
+                        <div class="card-body p-5 text-center">
 <?php
     $bdd = "koulai001_bd"; // Base de données 
     $host = "lakartxela.iutbayonne.univ-pau.fr";
@@ -34,12 +40,16 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
     $resultat -> free_result();
     $link -> close();
     ?>
-
-<main>       
-    <div>
-        <button onclick="window.location.href='ajoutBD.php';" >Ajouter un enregistrement</button>
-        <button onclick="window.location.href='modificationBD.php';" >Modifier la base de données</button>
-        <button onclick="window.location.href='supprimerBD.php';" >Supprimer un enregistrement</button>
-    </div>
-    <button onclick="window.location.href='logout.php';" >Se déconnecter</button>
+ 
+                            <div>
+                                <button onclick="window.location.href='ajoutBD.php';" >Ajouter un enregistrement</button>
+                                <button onclick="window.location.href='modificationBD.php';" >Modifier la base de données</button>
+                                <button onclick="window.location.href='supprimerBD.php';" >Supprimer un enregistrement</button>
+                            </div>
+                            <button onclick="window.location.href='logout.php';" >Se déconnecter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 </main>
