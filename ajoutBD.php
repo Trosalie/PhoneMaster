@@ -5,7 +5,12 @@
         exit();
     }
 ?>
-<head> <title>Ajouter un enregistrement</title> </head>
+<html> <head> 
+    <link rel='stylesheet' type='text/css' href='node_modules\bootstrap\dist\css\bootstrap.css'>
+    <script src="node_modules\bootstrap\dist\js\bootstrap.bundle.js"></script> 
+    
+    <title>Ajouter un enregistrement</title> 
+    </head>
 <main>
 
     <form action="ajoutBD.php" method="POST">

@@ -1,10 +1,19 @@
 <?php
-    session_start();
-    if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
-        header("location: index.php");
-        exit();
-    }
-    print "<head> <title>Modification de la BD</title> </head>";
+session_start();
+if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
+    header("location: index.php");
+    exit();
+}
+?>
+
+<html> <head> 
+    <link rel='stylesheet' type='text/css' href='node_modules\bootstrap\dist\css\bootstrap.css'>
+    <script src='node_modules\bootstrap\dist\js\bootstrap.bundle.js'></script> 
+    
+    <title>Modification de la BD</title> 
+    </head>
+
+<?php
     $bdd = "koulai001_bd"; // Base de données 
     $host = "lakartxela.iutbayonne.univ-pau.fr";
     $user = "koulai001_bd"; // Utilisateur 

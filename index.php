@@ -5,17 +5,28 @@
     <title>Acces back-office</title> 
     </head>
 
-    <body class="container mt-10">
-        <form action="login.php" method="post">
-            <div class="mx-55">
-                <label class="form-label">Nom d'utilisateur :</label>
-                <input type="text" name="login" class="form-control">
+    <body>
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card text-black" style="border-radius: 1rem;">
+                        <div class="card-body p-5 text-center">
+                            <form action="login.php" method="post">
+                                <div class="mb-3">
+                                    <label class="form-label">Nom d'utilisateur :</label>
+                                    <input type="text" name="login" class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Mot de passe :</label>
+                                    <input type="password" name="pwd" class="form-control">
+                                    <br/><br/>
+                                    <input type="submit" value="Connexion" class="btn btn-primary">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="mb-3">
-                <label class="form-label">Mot de passe :</label>
-                <input type="password" name="pwd" class="form-control">
-                <input type="submit" value="Connexion" class="btn btn-primary">
-            </div>
-        </form>
+        </div>
     </body>
 </html>
