@@ -3,7 +3,7 @@
 
     $dir = "images"; // Nom du dossier contenant les photos
 
-    $name = $_POST["id"]."_".$_POST["modele"].".png"; // Nom du fichier de photo
+    $name = $_POST["id"].".png"; // Nom du fichier de photo
 
 
     $bdd = "koulai001_bd"; // Base de données
@@ -28,6 +28,7 @@
         $idBD = $donnee["id"];
         if ($id == $idBD) {
             echo '<body onLoad="alert(\'ID existant dans la base de données\')">';
+            echo '<meta http-equiv="refresh" content="0;URL=ajoutBD.php">';
             $resultat->free_result();
             $link->close();
             exit();
@@ -35,7 +36,6 @@
     }
 
     if(is_uploaded_file($_FILES["photo"]["tmp_name"])){
-        //$name = basename($_FILES["photo"]["name"]);
         move_uploaded_file($_FILES["photo"]["tmp_name"],"$dir/$name");
         print '<meta http-equiv="refresh" content="0;URL=backoffice.php">';
     }

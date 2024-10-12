@@ -26,7 +26,7 @@
                                 <input class="input-group-text" type=text name=marque placeholder=marque>
                                 <input class="input-group-text" type=text name=prix placeholder=prix>
                             </div>
-                                <input type=file name=photo accept=".jpg,.jpeg,.png" class="form-control">
+                                <input type=file name=photo accept=".png" class="form-control">
                                 <br>
                                 <input type=submit value=Ajouter class="btn btn-primary">
                             </form>

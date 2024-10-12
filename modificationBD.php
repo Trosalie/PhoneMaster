@@ -38,15 +38,17 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
         $modele = $donnee["modele"];
         $marque = $donnee["marque"];
         $prix = $donnee["prix"];
+        $image = $donnee["image"];
         print "<form action=modificationBD.php method=post>
         <div class=\"card text-bg-info mb-3\">
             <div class=\"card-header\">
-                Modele <input type=text name=modele$i value=\"$modele\"> 
+                Modele <input type=text name=modele$i value=\"$modele\" class=\"form-control bg-light-subtle\">
             </div>
             <ul class=\"list-group list-group-flush\">
-                            <li class=\"list-group-item\">Id <input type=text name=id$i value=$id readonly=readonly></li>
-                            <li class=\"list-group-item\">Marque <input type=text name=marque$i value=$marque></li>
-                            <li class=\"list-group-item\">Prix <input type=text name=prix$i value=$prix> €</li>
+                            <li class=\"list-group-item\">Id <input type=text name=id$i value=$id class=\"form-control bg-light\" readonly=readonly></li>
+                            <li class=\"list-group-item\">Marque <input type=text name=marque$i value=$marque class=\"form-control bg-light\"></li>
+                            <li class=\"list-group-item\">Prix <input type=text name=prix$i value=$prix class=\"form-control bg-light\"></li>
+                            <li class=\"list-group-item\"><input type=file name=photo$i value=$image accept=.png class=form-control></li>
             </ul>
         </div>
         <br><br>";

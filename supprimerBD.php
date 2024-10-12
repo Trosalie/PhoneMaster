@@ -28,6 +28,8 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
     $link = mysqli_connect($host,$user,$pass,$bdd) or die( "Impossible de se connecter à la base de données<br>");
     $i = 1;
 
+    $dir = "images";
+
     $query = "SELECT * FROM $nomtable";
     $resultat = mysqli_query($link,$query);
 
@@ -60,6 +62,8 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
 <?php
     for($ligne = 1; $ligne <= $i; $ligne++){
         if(isset($_POST["button".$ligne])){
+            $imagePath = $dir."/".$_POST["idBD".$ligne].".png";
+            unlink($imagePath);
             $query = $link->prepare("DELETE FROM `Telephone` WHERE `id` = (?)");
             $query->bind_param('i',$_POST["idBD".$ligne]);
             $query->execute();
