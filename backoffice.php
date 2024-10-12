@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
-    header("location: index.php");
+    header("location: acces.php");
     exit();
 }
 ?>
@@ -12,12 +12,14 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
     
     <title>Back-office</title>
 </head>
-<main>   
+<main class="bg-gradient-primary">   
 <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                     <div class="card text-black" style="border-radius: 1rem;">
                         <div class="card-body p-5 text-center">
+                        <label class="fs-2">Données enregistrées</label>
+                        <hr>
 <?php
     $bdd = "koulai001_bd"; // Base de données 
     $host = "lakartxela.iutbayonne.univ-pau.fr";
@@ -67,3 +69,4 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
             </div>
         </div>
 </main>
+<html>

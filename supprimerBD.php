@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
-    header("location: index.php");
+    header("location: acces.php");
     exit();
 }
 ?>
@@ -17,6 +17,8 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                     <div class="card text-black" style="border-radius: 1rem;">
                         <div class="card-body p-5 text-center">
+                        <label class="fs-2">Supprimer un enregistrement</label>
+                        <hr>
 <?php
     $bdd = "koulai001_bd"; // Base de données 
     $host = "lakartxela.iutbayonne.univ-pau.fr";

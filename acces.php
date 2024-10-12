@@ -21,6 +21,8 @@
                                     <input type="password" name="pwd" class="form-control">
                                     <br/><br/>
                                     <input type="submit" value="Connexion" class="btn btn-primary">
+                                    </br>
+                                    </br><a href="index.php" class ="link-offset-2 link-underline link-underline-opacity-0">Sortir du Back-Office</a>
                                 </div>
                             </form>
                         </div>
