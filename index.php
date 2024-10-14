@@ -38,4 +38,5 @@
     }
     print "</div>";
 ?>
+<button class="btn text-bg-secondary" onclick="window.location.href='logoutClient.php">Vider panier</button>
 </body>
