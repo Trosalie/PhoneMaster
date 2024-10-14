@@ -25,4 +25,3 @@
         // echo 'Les variables du formulaire ne sont pas déclarées.';
         echo '<meta http-equiv="refresh" content="0;URL=acces.php">';
     }
-?>

@@ -1,4 +1,4 @@
-<html> <head> 
+<html lang="fr"> <head>
     <link rel='stylesheet' type='text/css' href='node_modules\bootstrap\dist\css\bootstrap.css'>
     <script src="node_modules\bootstrap\dist\js\bootstrap.bundle.js"></script> 
     
@@ -21,8 +21,8 @@
                                     <input type="password" name="pwd" class="form-control">
                                     <br/><br/>
                                     <input type="submit" value="Connexion" class="btn btn-primary">
-                                    </br>
-                                    </br><a href="index.php" class ="link-offset-2 link-underline link-underline-opacity-0">Sortir du Back-Office</a>
+                                    <br>
+                                    <br><a href="#" class ="link-offset-2 link-underline link-underline-opacity-0">Sortir du Back-Office</a>
                                 </div>
                             </form>
                         </div>

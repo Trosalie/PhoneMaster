@@ -6,13 +6,13 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
 }
 ?>
 
-<html> <head> 
+<html lang="fr"> <head>
     <link rel='stylesheet' type='text/css' href='node_modules\bootstrap\dist\css\bootstrap.css'>
-    <script src="node_modules\bootstrap\dist\js\bootstrap.bundle.js"></script> 
+    <script src="node_modules\bootstrap\dist\js\bootstrap.bundle.js"></script>
     
     <title>Back-office</title>
 </head>
-<main class="bg-gradient-primary">   
+<main class="bg-gradient-primary">
 <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -38,10 +38,11 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
         $prix = $donnee["prix"];
         print "<div class=\"card text-bg-info mb-3\">
                     <div class=\"card-header\">
-                        $modele
+                        $id
                     </div>
                     <ul class=\"list-group list-group-flush\">
-                        <li class=\"list-group-item\">$id</li>
+                        <li class=\"list-group-item\"><img src='images/$id.png'></li>
+                        <li class=\"list-group-item\">$modele</li>
                         <li class=\"list-group-item\">$marque</li>
                         <li class=\"list-group-item\">$prix</li>
                     </ul>
@@ -69,4 +70,4 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
             </div>
         </div>
 </main>
-<html>
+</html>

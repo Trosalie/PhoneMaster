@@ -6,7 +6,7 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
 }
 ?>
 
-<html> <head> 
+<html lang="fr"> <head>
     <link rel='stylesheet' type='text/css' href='node_modules\bootstrap\dist\css\bootstrap.css'>
     <script src='node_modules\bootstrap\dist\js\bootstrap.bundle.js'></script> 
     
@@ -44,6 +44,7 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
                         $modele
             </div>
             <ul class=\"list-group list-group-flush\">
+                            <li class=\"list-group-item\"><img src='images/$id.png'></li>
                             <li class=\"list-group-item\"><input type=text name=idBD$i value=$id class=\"input-group-text\" readonly=readonly></li>
                             <li class=\"list-group-item\">$marque</li>
                             <li class=\"list-group-item\">$prix</li>

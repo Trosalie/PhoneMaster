@@ -5,7 +5,7 @@
         exit();
     }
 ?>
-<html> <head> 
+<html lang="fr"> <head> 
     <link rel='stylesheet' type='text/css' href='node_modules\bootstrap\dist\css\bootstrap.css'>
     <script src="node_modules\bootstrap\dist\js\bootstrap.bundle.js"></script> 
     
