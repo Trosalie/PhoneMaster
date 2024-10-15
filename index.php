@@ -1,5 +1,10 @@
 <?php
     session_start();
+    $connected = false;
+
+    if (isset($_SESSION['login']) || isset($_SESSION['pwd'])) {
+        $connected = true;
+    }
 ?>
 
 <html lang="fr"> <head>
@@ -16,15 +21,16 @@
     $pass = "koulai001_bd"; // mp
     $nomtable = "Telephone"; /* Connection bdd */
     $link = mysqli_connect($host,$user,$pass,$bdd) or die( "Impossible de se connecter à la base de données<br>");
-    if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
+
+    if (!$connected){
         print "
         <button class=\"btn text-bg-secondary\" onclick=window.location.href='acces.php?mode=client'>Se connecter</button>
         <button class=\"btn text-bg-secondary\" onclick=window.location.href='acces.php?mode=admin'>Acceder au back-office</button>";
     }
     else{
-        print "<button class=\"btn text-bg-secondary\" onclick=window.location.href='logout.php'>Se déconnecter</button>";
-        print "<button class=\"btn text-bg-secondary\" onclick=window.location.href='panier.php'>Acceder au panier</button>";
-        print "<h1> Bonjour ". $_SESSION['login'] ." ! </h1>";
+        print "<nav></nav><button class=\"btn text-bg-secondary\" onclick=window.location.href='logout.php'>Se déconnecter</button>
+                <button class=\"btn text-bg-secondary\" onclick=window.location.href='panier.php'>Acceder au panier</button>
+                <h1> Bonjour ". $_SESSION['login'] ." ! </h1></nav>";
     }
 
     $query = "SELECT * FROM $nomtable";
@@ -43,9 +49,16 @@
                         <ul class=\"list-group list-group-flush\">
                             <li class=\"list-group-item\"><img src='images/$id.png'></li>
                             <p class=\"\">$prix</p>
-                        </ul>
-                            <button class=\"btn text-bg-secondary\" onclick=\"window.location.href='ajoutPanier.php?id=$id';\">Ajouter au panier</button>
+                        </ul>";
+        if($connected){
+        print"<button class=\"btn text-bg-secondary\" onclick=\"window.location.href='ajoutPanier.php?id=$id';\">Ajouter au panier</button>
                     </div>";
+        }
+        else{
+            print"<button class=\"btn text-bg-secondary\" onclick=\"window.location.href='#';\">Connectez-vous !</button>
+                    </div>";
+        }
+
 
     }
     print "</div>";

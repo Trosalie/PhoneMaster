@@ -1,6 +1,5 @@
 <?php
     $mode = $_GET['mode'];
-    print $mode;
 ?>
 
 <html lang="fr"> <head>
