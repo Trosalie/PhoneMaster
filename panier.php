@@ -16,6 +16,7 @@
     $nomtable = "Telephone"; /* Connection bdd */
     $link = mysqli_connect($host,$user,$pass,$bdd) or die( "Impossible de se connecter à la base de données<br>");
     $total = 0;
+    $nombreArticle = 0;
 
     $query = "SELECT * FROM $nomtable";
     $resultat = mysqli_query($link,$query);
@@ -28,7 +29,8 @@
         if(isset($_SESSION["_".$idBD]) && $_SESSION["_".$idBD] > 0) {
             $qte = $_SESSION["_".$idBD];
             $total += $prix * $qte;
-            print "<div class=\"card text-bg-info mb-3\">
+            $nombreArticle += $qte;
+            print "<div class=\"card mb-3\">
                                 <div class=\"card-header\">
                                     $modele
                                 </div>
@@ -43,7 +45,7 @@
     }
 
     if ($total > 0){
-        print "<p class=fs-4>Total = ".$total."€</p>";
+        print "<p class=fs-4>Nombre d'article(s) : ". $nombreArticle ."<br> Total = ".$total."€</p>";
         print "<button onclick=window.location.href='paiement.php';>Payer</button>";
     }
     else{
