@@ -1,4 +1,6 @@
 <?php
+// UTILISER DES DATABLES ET METTRE LE BOUTON DE DECONNECTION EN HAUT A GAUCHE
+
 session_start();
 if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
     header("location: acces.php");

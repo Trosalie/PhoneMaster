@@ -43,7 +43,7 @@
         $prix =  $donnee["prix"] . " €";
         print "<!-- Telephone $id -->
                 <div class='card col' style='width: 18rem;'>
-                    <img src='images/$id" . "_vignette.png' class='card-img-top' alt='. . .'>
+                    <img src='images/$id" . ".png' class='card-img-top' alt='. . .'>
                     <div class='card-body'>
                         <h5 class='card-title'>$modele</h5>
                         <button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#fenetre_$id'>

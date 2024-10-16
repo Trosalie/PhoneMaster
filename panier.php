@@ -26,6 +26,7 @@
         $modele = $donnee["modele"];
         $marque = $donnee["marque"];
         $prix = $donnee["prix"];
+
         if(isset($_SESSION["_".$idBD]) && $_SESSION["_".$idBD] > 0) {
             $qte = $_SESSION["_".$idBD];
             $total += $prix * $qte;
@@ -38,11 +39,21 @@
                                     <li class=\"list-group-item\"><img src='images/$idBD.png'></li>
                                     <li class=\"list-group-item\">$prix</li>
                                     <li class=\"list-group-item\">$qte</li>
-                                    <li class=\"list-group-item\"><button onclick=window.location.href='retirerPanier.php?id=$idBD'; class=\"btn btn-primary\">Retirer du panier</button></li>
+                                    <li id=\"btnRetirer_$idBD\" class=\"list-group-item\"><button onclick='retirer($idBD)'; class=\"btn btn-primary\">Retirer du panier</button></li>
+                                    
                                 </ul>
                             </div>";
         }
     }
+    print "<script type=text/javascript>function retirer(id){
+                                        const xmlhttp = new XMLHttpRequest();
+                                        xmlhttp.onload = function() {
+                                            xmlhttp.open(\"GET\", \"retirerPanier.php?id=\" + id);
+                                        }
+                                        }
+                                        
+                                        xmlhttp.send();
+                                    </script>";
 
     if ($total > 0){
         print "<p class=fs-4>Nombre d'article(s) : ". $nombreArticle ."<br> Total = ".$total."€</p>";

@@ -37,17 +37,15 @@
 
                                     $jour = New DateTime('now');
                                     $jour->modify('+3 month');
-                                    $jour = $jour->format("d/m/y");
+                                    $jour = $jour->format("y-m-d");
 
-                                    $tempArr=explode('-', $_POST["dateExp"]);
-
-                                    $dateExp = date("d/m/y", mktime($tempArr[2], $tempArr[1], $tempArr[0]));
+                                    $dateExp= $_POST["dateExp"];
 
                                     if($fin != $debut){
                                         print "<p class='text-danger'>Numéro de carte érroné</p>";
                                     }
                                     else{
-                                        if($dateExp < $jour) {
+                                        if(strtotime($dateExp) < strtotime($jour)) {
                                             print "<p class='text-danger'>Date d'expiration invalide</p>";
                                         }
                                         else{
