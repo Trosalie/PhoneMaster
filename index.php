@@ -41,25 +41,48 @@
         $modele = $donnee["modele"];
         $marque = $donnee["marque"];
         $prix =  $donnee["prix"] . " €";
-        print "
-                <div class=\"card text-bg-info col mb-3\">
-                        <div class=\"card-header\">
-                            $modele
-                        </div>
-                        <ul class=\"list-group list-group-flush\">
-                            <li class=\"list-group-item\"><img src='images/$id.png'></li>
-                            <p class=\"\">$prix</p>
-                        </ul>";
+        print "<!-- Telephone $id -->
+                <div class='card col' style='width: 18rem;'>
+                    <img src='images/$id" . "_vignette.png' class='card-img-top' alt='. . .'>
+                    <div class='card-body'>
+                        <h5 class='card-title'>$modele</h5>
+                        <button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#fenetre_$id'>
+                            Informations
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Fenetre modale attachée au téléphone $id -->
+                    <div class='modal fade' id='fenetre_$id' tabindex='-1' aria-labelledby='fenetreLabel_$id' aria-hidden='true'>
+                        <div class='modal-dialog'>
+                            <div class='modal-content'>
+                                <div class='modal-header'>
+                                    <h1 class='modal-title fs-5' id='fenetreLabel_$id'>Modal title</h1>
+                                    <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                                </div>
+                                <div class='modal-body'>
+                                    <img src='images\GALAXYA35.png'><hr>
+                                    Prix : $prix<br>
+                                    Modele : $modele<br>
+                                    Marque : $marque<br>
+                                </div>
+                                <div class='modal-footer'>
+                                    <button type='button' class='btn btn-primary' data-bs-dismiss='modal'>Close</button>
+                                ";
         if($connected){
-        print"<button class=\"btn text-bg-secondary\" onclick=\"window.location.href='ajoutPanier.php?id=$id';\">Ajouter au panier</button>
-                    </div>";
+        print"              <button class=\"btn text-bg-secondary\" onclick=\"window.location.href='ajoutPanier.php?id=$id';\">Ajouter au panier</button>
+                        </div>
+                    </div>
+                </div>
+            </div>";
         }
         else{
-            print"<button class=\"btn text-bg-secondary\" onclick=\"window.location.href='#';\">Connectez-vous !</button>
+            print"                  <button class=\"btn text-bg-secondary\" onclick=\"window.location.href='#';\">Connectez-vous !</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>";
         }
-
-
     }
     print "</div>";
 ?>
