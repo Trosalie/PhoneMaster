@@ -1,5 +1,7 @@
 
 <?php
+    include_once("loadVignette.php");
+
     if($_POST["id"] != 0 && $_POST["marque"] != "" && $_POST["modele"] != "" && $_POST["prix"] != 0 && is_uploaded_file($_FILES["photo"]["tmp_name"])){
         $dir = "images"; // Nom du dossier contenant les photos
 
@@ -46,6 +48,12 @@
             $query->execute();
             echo '<meta http-equiv="refresh" content="0;URL=backoffice.php">';
         }
+
+        // Génération de la vignette pour la photo upload
+        $nameVign = $id . "_vignette.png";
+        $monImage = loadVignette("$dir/$name");
+        imagepng($monImage, $dir/$nameVign);
+        imagedestroy($monImage);
     }
     else
     {
