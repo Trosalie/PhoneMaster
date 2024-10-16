@@ -2,8 +2,8 @@
     function loadVignette($fichier) {
         // Je récupère la taille de l'image et je la diminue de moitié pour la nouvelle image
         list($largeur, $hauteur) = getimagesize($fichier);
-        $newHauteur = round($hauteur * 0.1);
-        $newLargeur = round($largeur * 0.1);
+        $newHauteur = round($hauteur * 0.4);
+        $newLargeur = round($largeur * 0.4);
         $imagePHP = ImageCreateTrueColor($newLargeur, $newHauteur); // Vignette
         $image = ImageCreateFromPng($fichier); // Photo du phone
         

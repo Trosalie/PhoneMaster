@@ -15,6 +15,23 @@
 
 <body class="container">
 <?php
+    include_once 'loadVignette.php';
+    if (!is_dir("vignettes")) {
+        mkdir("vignettes");
+    }
+
+    $images = scandir("images");
+
+    foreach ($images as $image) {
+        if (!in_array($image, [".", ".."])) {
+
+            $monImage = loadVignette("images/$image");
+            $maVignette = rtrim($image, ".png") . "_vignette.png";
+            imagepng($monImage, "vignettes/$maVignette");
+            imagedestroy($monImage);
+        }
+    }
+
     $bdd = "koulai001_bd"; // Base de données
     $host = "lakartxela.iutbayonne.univ-pau.fr";
     $user = "koulai001_bd"; // Utilisateur
@@ -43,7 +60,7 @@
         $prix =  $donnee["prix"] . " €";
         print "<!-- Telephone $id -->
                 <div class='card col' style='width: 18rem;'>
-                    <img src='images/$id" . ".png' class='card-img-top' alt='. . .'>
+                    <img src='vignettes/$id" . "_vignette.png' class='card-img-top' alt='. . .'>
                     <div class='card-body'>
                         <h5 class='card-title'>$modele</h5>
                         <button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#fenetre_$id'>
@@ -61,7 +78,7 @@
                                     <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                                 </div>
                                 <div class='modal-body'>
-                                    <img src='images\GALAXYA35.png'><hr>
+                                    <img src='images/$id.png'><hr>
                                     Prix : $prix<br>
                                     Modele : $modele<br>
                                     Marque : $marque<br>
