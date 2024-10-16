@@ -52,7 +52,7 @@
         // Génération de la vignette pour la photo upload
         $nameVign = $id . "_vignette.png";
         $monImage = loadVignette("$dir/$name");
-        imagepng($monImage, $dir/$nameVign);
+        imagepng($monImage, "vignettes/$nameVign");
         imagedestroy($monImage);
     }
     else
