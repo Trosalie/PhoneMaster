@@ -5,7 +5,7 @@
     <title>Formulaire de paiement</title>
 </head>
 
-<section class="gradient-custom">
+<section>
     <div class="container my-5 py-5">
         <div class="row d-flex justify-content-center py-5">
             <div class="col-md-7 col-lg-5 col-xl-4">
@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center pb-2 col">
                                     <div data-mdb-input-init class="form-outline">
-                                        <input class="form-control form-control-lg" id="typeCVV" type="password" placeholder="***">
+                                        <input class="form-control form-control-lg" id="typeCVV" type="password" placeholder="***" minlength="3" maxlength="3" pattern="[^a-zA-Z]+">
                                         <label class="form-label" for="typeCVV">CVV/CVC</label>
                                     </div>
                                 </div>
