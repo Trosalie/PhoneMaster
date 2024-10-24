@@ -1,7 +1,11 @@
 <?php
     session_start();
     if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
-        header("location: acces.php");
+        header("location: index.php");
+        exit();
+    }
+    elseif ($_SESSION['mode'] != "admin"){
+        header("location: index.php");
         exit();
     }
     include_once("loadVignette.php");

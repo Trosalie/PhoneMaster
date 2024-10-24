@@ -4,6 +4,10 @@
 
     if (isset($_SESSION['login']) || isset($_SESSION['pwd'])) {
         $connected = true;
+        if($_SESSION['mode'] == 'admin'){
+            header("location: backoffice.php");
+            exit();
+        }
     }
 ?>
 

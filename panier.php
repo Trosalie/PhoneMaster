@@ -1,5 +1,13 @@
 <?php
     session_start();
+    if(!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
+        header("location: index.php");
+        exit();
+    }
+    elseif ($_SESSION['mode'] != "client"){
+        header("location: backoffice.php");
+        exit();
+    }
     ?>
 <html lang="fr"> <head>
     <link rel='stylesheet' type='text/css' href='node_modules\bootstrap\dist\css\bootstrap.css'>
@@ -71,7 +79,7 @@
                                     <form action=retirerPanier.php?id=$idBD method=POST>
                                         <img src='images/$idBD.png'><hr>
                                         Nombre de <b>$modele</b> à retirer :
-                                        <input type='number' name='qte' min='1' max='$qte'><br>
+                                        <input type='number' name='qte' min='1' max='$qte' value=1><br>
                                         <input type='submit' class='btn btn-success' value=Retirer>
                                     </form>
                                 </div>

@@ -13,6 +13,7 @@
                 session_start();
                 $_SESSION['login'] = $_POST['login'];
                 $_SESSION['pwd'] = $_POST['pwd'];
+                $_SESSION["mode"] = $mode;
 
                 if($mode == "admin") {
                     header('Location: backoffice.php');
