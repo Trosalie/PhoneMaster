@@ -26,8 +26,7 @@
         if (!in_array($image, [".", ".."])) {
 
             $monImage = loadVignette("images/$image");
-            $maVignette = rtrim($image, ".png") . "_vignette.png";
-            imagepng($monImage, "vignettes/$maVignette");
+            imagepng($monImage, "vignettes/$image");
             imagedestroy($monImage);
         }
     }
@@ -38,16 +37,21 @@
     $pass = "koulai001_bd"; // mp
     $nomtable = "Telephone"; /* Connection bdd */
     $link = mysqli_connect($host,$user,$pass,$bdd) or die( "Impossible de se connecter à la base de données<br>");
-
+?>
+    <nav class="btn-toolbar justify-content-between" role="toolbar">
+    <?php
     if (!$connected){
         print "
         <button class=\"btn text-bg-secondary\" onclick=window.location.href='acces.php?mode=client'>Se connecter</button>
-        <button class=\"btn text-bg-secondary\" onclick=window.location.href='acces.php?mode=admin'>Acceder au back-office</button>";
+        <a class='text-decoration-none' href='acces.php?mode=admin'>Acceder au back-office</a>
+        </nav>";
     }
     else{
-        print "<nav></nav><button class=\"btn text-bg-secondary\" onclick=window.location.href='logout.php'>Se déconnecter</button>
-                <button class=\"btn text-bg-secondary\" onclick=window.location.href='panier.php'>Acceder au panier</button>
-                <h1> Bonjour ". $_SESSION['login'] ." ! </h1></nav>";
+        print "<button class=\"btn text-bg-secondary\" onclick=window.location.href='panier.php'>Acceder au panier</button>
+                <button class=\"btn text-bg-secondary\" onclick=window.location.href='logout.php'>Se déconnecter</button>
+                
+                </nav>
+                <h1 class=\"fs-1 text-center fw-bolder\"> Bonjour ". $_SESSION['login'] ." ! </h1>";
     }
 
     $query = "SELECT * FROM $nomtable";
@@ -74,7 +78,7 @@
                         <div class='modal-dialog'>
                             <div class='modal-content'>
                                 <div class='modal-header'>
-                                    <h1 class='modal-title fs-5' id='fenetreLabel_$id'>Modal title</h1>
+                                    <h1 class='modal-title fs-5' id='fenetreLabel_$id'>$modele</h1>
                                     <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                                 </div>
                                 <div class='modal-body'>
@@ -84,7 +88,7 @@
                                     Marque : $marque<br>
                                 </div>
                                 <div class='modal-footer'>
-                                    <button type='button' class='btn btn-primary' data-bs-dismiss='modal'>Close</button>
+                                    <button type='button' class='btn btn-primary' data-bs-dismiss='modal'>Fermer</button>
                                 ";
         if($connected){
         print"              <button class=\"btn text-bg-secondary\" onclick=\"window.location.href='ajoutPanier.php?id=$id';\">Ajouter au panier</button>
@@ -94,7 +98,7 @@
             </div>";
         }
         else{
-            print"                  <button class=\"btn text-bg-secondary\" onclick=\"window.location.href='#';\">Connectez-vous !</button>
+            print"                  <button class=\"btn text-bg-secondary\" onclick=\"window.location.href='#';\">🔒</button>
                                 </div>
                             </div>
                         </div>
@@ -104,3 +108,8 @@
     print "</div>";
 ?>
 </body>
+<footer class="blockquote-footer">
+    <hr>
+    <p>Ce site est un projet réalisé par OULAI Kevin et ROSALIE Thibault</p>
+    <p>Dans le cadre de la ressource R3.01 : Développement web</p>
+</footer>

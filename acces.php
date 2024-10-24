@@ -1,5 +1,10 @@
 <?php
-    $mode = $_GET['mode'];
+    if(isset($_GET['mode'])) {
+        $mode = $_GET['mode'];
+    }
+    else{
+        echo "<meta http-equiv=refresh content=0;URL=index.php>";
+    }
 ?>
 
 <html lang="fr"> <head>
@@ -55,4 +60,9 @@
             </div>
         </div>
     </body>
+<footer class="blockquote-footer">
+    <hr>
+    <p>Ce site est un projet réalisé par OULAI Kevin et ROSALIE Thibault</p>
+    <p>Dans le cadre de la ressource R3.01 : Développement web</p>
+</footer>
 </html>

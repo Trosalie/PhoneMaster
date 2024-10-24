@@ -1,5 +1,5 @@
 <?php
-// UTILISER DES DATABLES ET METTRE LE BOUTON DE DECONNECTION EN HAUT A GAUCHE
+// UTILISER DES DATATABLES ET METTRE LE BOUTON DE DECONNECTION EN HAUT A GAUCHE
 
 session_start();
 if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
@@ -10,18 +10,27 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
 
 <html lang="fr"> <head>
     <link rel='stylesheet' type='text/css' href='node_modules\bootstrap\dist\css\bootstrap.css'>
-    <script src="node_modules\bootstrap\dist\js\bootstrap.bundle.js"></script>
-    
+
+
     <title>Back-office</title>
 </head>
-<main class="bg-gradient-primary">
-<div class="container py-5 h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                    <div class="card text-black" style="border-radius: 1rem;">
-                        <div class="card-body p-5 text-center">
-                        <label class="fs-2">Données enregistrées</label>
-                        <hr>
+<nav class="btn-toolbar justify-content-between" role="toolbar">
+    <p></p>
+    <button onclick="window.location.href='logout.php';" class="btn text-bg-secondary">Se déconnecter</button>
+</nav>
+<main>
+    <table id="matable" class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Image</th>
+            <th>Modele</th>
+            <th>Marque</th>
+            <th>Prix</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
 <?php
     $bdd = "koulai001_bd"; // Base de données 
     $host = "lakartxela.iutbayonne.univ-pau.fr";
@@ -38,38 +47,87 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
         $modele = $donnee["modele"];
         $marque = $donnee["marque"];
         $prix = $donnee["prix"];
-        print "<div class=\"card text-bg-info mb-3\">
-                    <div class=\"card-header\">
-                        $id
+        print "
+                    <tr>
+                        <td>$id</td>
+                        <td><img class=img-thumbnail src='images/$id.png'></td>
+                        <td>$modele</td>
+                        <td>$marque</td>
+                        <td>$prix</td>
+                        <td>
+                            <button class=\"btn btn-primary\" data-bs-toggle='modal' data-bs-target='#fModifier_$id'>Modifier</button>
+                            <button class=\"btn btn-primary\" data-bs-toggle='modal' data-bs-target='#fSupprimer_$id'>Supprimer</button>
+                        </td>
+                    
+                    <!-- Fenetre modale modification -->
+                    <div class='modal fade' id='fModifier_$id' tabindex='-1' aria-labelledby='Modifier' aria-hidden='true'>
+                        <div class='modal-dialog'>
+                            <div class='modal-content'>
+                                <div class='modal-header'>
+                                    <h1 class='modal-title fs-5' id='fModifierLabel_$id'>Modifier</h1>
+                                    <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Annuler'></button>
+                                </div>
+                                <div class='modal-body'>
+                                    <form ENCTYPE='multipart/form-data' action=modificationBD.php method=POST>
+                                    <img src='images/$id.png'><hr>
+                                        ID : <input type=text name=id value='$id' class=form-control readonly=readonly><br>
+                                        Modele : <input type=text name=modele value='$modele' class=form-control><br>
+                                        Marque : <input type=text name=marque value='$marque' class=form-control><br>
+                                        Prix : <input type=text name=prix value='$prix' class=form-control><br>
+                                        Changer la photo<input type=file name=photo accept=.png class=form-control><br>
+                                        <input type='submit' class='btn btn-success' value=Valider>
+                                    </form>
+                                </div>
+                                <div class='modal-footer'>
+                                    <button type='button' class='btn btn-primary' data-bs-dismiss='modal'>Annuler</button>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <ul class=\"list-group list-group-flush\">
-                        <li class=\"list-group-item\"><img src='images/$id.png'></li>
-                        <li class=\"list-group-item\">$modele</li>
-                        <li class=\"list-group-item\">$marque</li>
-                        <li class=\"list-group-item\">$prix</li>
-                    </ul>
-                </div>";
+                    </tr>
+
+                    
+                    <!-- Fenetre modale suppression -->
+                    <div class='modal fade' id='fSupprimer_$id' tabindex='-1' aria-labelledby='Supprimer' aria-hidden='true'>
+                        <div class='modal-dialog'>
+                            <div class='modal-content'>
+                                <div class='modal-header'>
+                                    <h1 class='modal-title fs-5' id='fSupprimerLabel_$id'>Supprimer</h1>
+                                    <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Annuler'></button>
+                                </div>
+                                <div class='modal-body'>
+                                    <img src='images/$id.png'><hr>
+                                    Prix : $prix<br>
+                                    Modele : $modele<br>
+                                    Marque : $marque<br>
+                                </div>
+                                <div class='modal-footer'>
+                                    <button type='button' class='btn btn-primary' data-bs-dismiss='modal'>Annuler</button>
+                                    <button onclick=\"window.location.href='supprimerBD.php?ID=$id';\" class='btn text-bg-danger'>Supprimer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </tr>
+                ";
     }
 
     $resultat -> free_result();
     $link -> close();
     ?>
- 
-                            <div>
-                                <p>
-                                <p>
-                                <button onclick="window.location.href='ajoutBD.php';"  class="btn btn-primary">Ajouter un enregistrement</button>
-                                <p>
-                                <button onclick="window.location.href='modificationBD.php';" class="btn btn-primary">Modifier la base de données</button>
-                                <p>
-                                <button onclick="window.location.href='supprimerBD.php';" class="btn btn-primary">Supprimer un enregistrement</button>
-                                <p>
-                            </div>
-                            <button onclick="window.location.href='logout.php';" class="btn text-bg-secondary">Se déconnecter</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </tbody>
+    </table>
+    <button class="btn btn-primary position-absolute start-50 translate-middle" onclick="window.location.href='ajoutBD.php'">Ajouter un enregistrement</button>
 </main>
+<footer class="blockquote-footer">
+    <hr>
+    <p>Ce site est un projet réalisé par OULAI Kevin et ROSALIE Thibault</p>
+    <p>Dans le cadre de la ressource R3.01 : Développement web</p>
+</footer>
+<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+<script src="node_modules/jquery/dist/jquery.js"></script>
+<script src="node_modules/datatables.net/js/dataTables.js"></script>
+<script src="node_modules/datatables.net-bs5/js/dataTables.bootstrap5.js"></script>
+<script src="JS/script.js"></script>
 </html>

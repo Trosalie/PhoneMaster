@@ -61,4 +61,9 @@
     </div>
 </div>
 </body>
+<footer class="blockquote-footer">
+    <hr>
+    <p>Ce site est un projet réalisé par OULAI Kevin et ROSALIE Thibault</p>
+    <p>Dans le cadre de la ressource R3.01 : Développement web</p>
+</footer>
 </html>

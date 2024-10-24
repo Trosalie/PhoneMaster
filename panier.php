@@ -7,7 +7,15 @@
 
     <title>Ajout Panier</title>
 </head>
-<button class="btn-primary" onclick="window.location.href='index.php'">Sortir du panier</button>
+<nav class="btn-toolbar justify-content-between" role="toolbar">
+    <p></p>
+    <button class="btn btn-secondary" onclick="window.location.href='index.php'">Sortir du panier</button>
+</nav>
+<hr>
+<br>
+<h1 class="fs-1 text-center fw-bolder">Votre panier</h1>
+<br>
+<hr>
  <?php
     $bdd = "koulai001_bd"; // Base de données
     $host = "lakartxela.iutbayonne.univ-pau.fr";
@@ -36,29 +44,27 @@
                                     $modele
                                 </div>
                                 <ul class=\"list-group list-group-flush\">
-                                    <li class=\"list-group-item\"><img src='images/$idBD.png'></li>
+                                    <li class=\"list-group-item\"><img src='vignettes/$idBD.png'></li>
                                     <li class=\"list-group-item\">$prix</li>
                                     <li class=\"list-group-item\">$qte</li>
-                                    <li id=\"btnRetirer_$idBD\" class=\"list-group-item\"><button onclick='retirer($idBD)'; class=\"btn btn-primary\">Retirer du panier</button></li>
+                                    <li id=\"btnRetirer_$idBD\" class=\"list-group-item\"><button onclick=window.location.href='retirerPanier.php?id=$idBD' class=\"btn btn-primary\">Retirer du panier</button></li>
                                     
                                 </ul>
                             </div>";
         }
     }
-    print "<script type=text/javascript>function retirer(id){
-                                        const xmlhttp = new XMLHttpRequest();
-                                        xmlhttp.onload = function() {
-                                            xmlhttp.open(\"GET\", \"retirerPanier.php?id=\" + id);
-                                        }
-                                        }
-                                        
-                                        xmlhttp.send();
-                                    </script>";
 
     if ($total > 0){
         print "<p class=fs-4>Nombre d'article(s) : ". $nombreArticle ."<br> Total = ".$total."€</p>";
-        print "<button onclick=window.location.href='paiement.php';>Payer</button>";
+        print "<button class='btn text-bg-success' onclick=window.location.href='paiement.php';>Payer</button>";
     }
     else{
         print "<p class=fs-4>Panier vide</p>";
     }
+    ?>
+
+<footer class="blockquote-footer">
+    <hr>
+    <p>Ce site est un projet réalisé par OULAI Kevin et ROSALIE Thibault</p>
+    <p>Dans le cadre de la ressource R3.01 : Développement web</p>
+</footer>

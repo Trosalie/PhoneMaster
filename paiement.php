@@ -3,7 +3,10 @@
     <script src="node_modules\bootstrap\dist\js\bootstrap.bundle.js"></script>
     <title>Formulaire de paiement</title>
 </head>
-
+<nav class="btn-toolbar justify-content-between" role="toolbar">
+    <p></p>
+    <button class="btn btn-secondary" onclick="window.location.href='panier.php'">Retour</button>
+</nav>
 <section class="gradient-custom">
     <div class="container my-5 py-5">
         <div class="row d-flex justify-content-center py-5">
@@ -61,3 +64,8 @@
             </div>
         </div>
 </section>
+<footer class="blockquote-footer">
+    <hr>
+    <p>Ce site est un projet réalisé par OULAI Kevin et ROSALIE Thibault</p>
+    <p>Dans le cadre de la ressource R3.01 : Développement web</p>
+</footer>

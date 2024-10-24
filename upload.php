@@ -57,7 +57,6 @@
     }
     else
     {
-        print "PAS OK";
         echo '<body onLoad="alert(\'Veuillez remplir le formulaire en entier\')">';
         echo '<meta http-equiv="refresh" content="0;URL=ajoutBD.php">';
     }
