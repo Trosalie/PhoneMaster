@@ -52,7 +52,7 @@ elseif ($_SESSION['mode'] != "admin"){
         print "
                     <tr>
                         <td>$id</td>
-                        <td><img class=img-thumbnail src='images/$id.png'></td>
+                        <td><img class=img-thumbnail src='loadVignette.php?id=$id'></td>
                         <td>$modele</td>
                         <td>$marque</td>
                         <td>$prix</td>

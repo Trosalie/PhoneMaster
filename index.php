@@ -19,22 +19,6 @@
 
 <body class="container">
 <?php
-    include_once 'loadVignette.php';
-    if (!is_dir("vignettes")) {
-        mkdir("vignettes");
-    }
-
-    $images = scandir("images");
-
-    foreach ($images as $image) {
-        if (!in_array($image, [".", ".."])) {
-
-            $monImage = loadVignette("images/$image");
-            imagepng($monImage, "vignettes/$image");
-            imagedestroy($monImage);
-        }
-    }
-
     $bdd = "koulai001_bd"; // Base de données
     $host = "lakartxela.iutbayonne.univ-pau.fr";
     $user = "koulai001_bd"; // Utilisateur
@@ -66,9 +50,9 @@
         $modele = $donnee["modele"];
         $marque = $donnee["marque"];
         $prix =  $donnee["prix"] . " €";
-        print "<!-- Telephone $id -->
-                <div class='card col' style='width: 18rem;'>
-                    <img src='vignettes/$id" . "_vignette.png' class='card-img-top' alt='. . .'>
+        print "
+                <div class='card col mb-3' style='width: 18rem;'>
+                    <a data-bs-toggle='modal' data-bs-target='#fenetre_$id'><img src='loadVignette.php?id=$id' class='card-img-top' alt='. . .'></a>
                     <div class='card-body'>
                         <h5 class='card-title'>$modele</h5>
                         <button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#fenetre_$id'>
