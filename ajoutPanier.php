@@ -8,7 +8,7 @@
         header("location: index.php");
         exit();
     }
-    
+
     $id = "_". $_GET['id'];
 
     if(isset($_SESSION[$id])){

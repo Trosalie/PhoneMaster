@@ -60,7 +60,7 @@
             $total += $prix * $qte;
             $nombreArticle += $qte;
             print "<tr>
-                        <td><img class=img-thumbnail src='images/$idBD.png'></td>
+                        <td><img class=img-thumbnail src='loadVignette.php?id=$idBD'></td>
                         <td>$modele</td>
                         <td>$marque</td>
                         <td>$prix</td>

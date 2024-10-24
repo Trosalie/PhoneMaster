@@ -14,27 +14,12 @@
 <html lang="fr"> <head>
     <link rel='stylesheet' type='text/css' href='node_modules\bootstrap\dist\css\bootstrap.css'>
     <script src="node_modules\bootstrap\dist\js\bootstrap.bundle.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>PhoneMaster</title>
 </head>
 
 <body class="container">
 <?php
-    include_once 'loadVignette.php';
-    if (!is_dir("vignettes")) {
-        mkdir("vignettes");
-    }
-
-    $images = scandir("images");
-
-    foreach ($images as $image) {
-        if (!in_array($image, [".", ".."])) {
-
-            $monImage = loadVignette("images/$image");
-            imagepng($monImage, "vignettes/$image");
-            imagedestroy($monImage);
-        }
-    }
-
     $bdd = "koulai001_bd"; // Base de données
     $host = "lakartxela.iutbayonne.univ-pau.fr";
     $user = "koulai001_bd"; // Utilisateur
@@ -51,8 +36,8 @@
         </nav>";
     }
     else{
-        print "<button class=\"btn text-bg-secondary\" onclick=window.location.href='panier.php'>Acceder au panier</button>
-                <button class=\"btn text-bg-secondary\" onclick=window.location.href='logout.php'>Se déconnecter</button>
+        print "<button class=\"btn text-bg-secondary\" onclick=window.location.href='panier.php'><i class='bi bi-cart-fill'></i> Acceder au panier</button>
+                <button class=\"btn text-bg-secondary\" onclick=window.location.href='logout.php'>Se deconnecter</button>
                 
                 </nav>
                 <h1 class=\"fs-1 text-center fw-bolder\"> Bonjour ". $_SESSION['login'] ." ! </h1>";
@@ -66,9 +51,9 @@
         $modele = $donnee["modele"];
         $marque = $donnee["marque"];
         $prix =  $donnee["prix"] . " €";
-        print "<!-- Telephone $id -->
-                <div class='card col' style='width: 18rem;'>
-                    <img src='vignettes/$id" . "_vignette.png' class='card-img-top' alt='. . .'>
+        print "
+                <div class='card col mb-3' style='width: 18rem;'>
+                    <a data-bs-toggle='modal' data-bs-target='#fenetre_$id'><img src='loadVignette.php?id=$id' class='card-img-top' alt='. . .'></a>
                     <div class='card-body'>
                         <h5 class='card-title'>$modele</h5>
                         <button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#fenetre_$id'>
@@ -102,7 +87,7 @@
             </div>";
         }
         else{
-            print"                  <button class=\"btn text-bg-secondary\" onclick=\"window.location.href='#';\">🔒</button>
+            print"                  <button class=\"btn text-bg-secondary\" onclick=\"window.location.href='#';\"><i class='bi bi-lock-fill'></i></button>
                                 </div>
                             </div>
                         </div>
