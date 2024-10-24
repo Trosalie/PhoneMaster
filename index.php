@@ -14,6 +14,7 @@
 <html lang="fr"> <head>
     <link rel='stylesheet' type='text/css' href='node_modules\bootstrap\dist\css\bootstrap.css'>
     <script src="node_modules\bootstrap\dist\js\bootstrap.bundle.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>PhoneMaster</title>
 </head>
 
@@ -35,8 +36,8 @@
         </nav>";
     }
     else{
-        print "<button class=\"btn text-bg-secondary\" onclick=window.location.href='panier.php'>Acceder au panier</button>
-                <button class=\"btn text-bg-secondary\" onclick=window.location.href='logout.php'>Se déconnecter</button>
+        print "<button class=\"btn text-bg-secondary\" onclick=window.location.href='panier.php'><i class='bi bi-cart-fill'></i> Acceder au panier</button>
+                <button class=\"btn text-bg-secondary\" onclick=window.location.href='logout.php'>Se deconnecter</button>
                 
                 </nav>
                 <h1 class=\"fs-1 text-center fw-bolder\"> Bonjour ". $_SESSION['login'] ." ! </h1>";
@@ -86,7 +87,7 @@
             </div>";
         }
         else{
-            print"                  <button class=\"btn text-bg-secondary\" onclick=\"window.location.href='#';\">🔒</button>
+            print"                  <button class=\"btn text-bg-secondary\" onclick=\"window.location.href='#';\"><i class='bi bi-lock-fill'></i></button>
                                 </div>
                             </div>
                         </div>

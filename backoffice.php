@@ -12,10 +12,11 @@ elseif ($_SESSION['mode'] != "admin"){
 
 <html lang="fr"> <head>
     <link rel='stylesheet' type='text/css' href='node_modules\bootstrap\dist\css\bootstrap.css'>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <title>Back-office</title>
 </head>
+
 <nav class="btn-toolbar justify-content-between" role="toolbar">
     <p></p>
     <button onclick="window.location.href='logout.php';" class="btn text-bg-secondary">Se déconnecter</button>
@@ -76,7 +77,7 @@ elseif ($_SESSION['mode'] != "admin"){
                                         Marque : <input type=text name=marque value='$marque' class=form-control><br>
                                         Prix : <input type=text name=prix value='$prix' class=form-control><br>
                                         Changer la photo<input type=file name=photo accept=.png class=form-control><br>
-                                        <input type='submit' class='btn btn-success' value=Valider>
+                                        <button type='submit' class='btn btn-success' value=''><i class=\"bi bi-floppy-fill\"></i></button>
                                     </form>
                                 </div>
                                 <div class='modal-footer'>
@@ -105,7 +106,7 @@ elseif ($_SESSION['mode'] != "admin"){
                                 </div>
                                 <div class='modal-footer'>
                                     <button type='button' class='btn btn-primary' data-bs-dismiss='modal'>Annuler</button>
-                                    <button onclick=\"window.location.href='supprimerBD.php?ID=$id';\" class='btn text-bg-danger'>Supprimer</button>
+                                    <button onclick=\"window.location.href='supprimerBD.php?ID=$id';\" class='btn text-bg-danger'><i class='bi bi-trash-fill'></i></button>
                                 </div>
                             </div>
                         </div>
