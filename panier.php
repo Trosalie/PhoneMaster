@@ -16,6 +16,18 @@
 <h1 class="fs-1 text-center fw-bolder">Votre panier</h1>
 <br>
 <hr>
+<table id="matable" class="table table-striped table-hover">
+    <thead>
+    <tr>
+        <th class="">Image</th>
+        <th>Modele</th>
+        <th>Marque</th>
+        <th>Prix</th>
+        <th>Quantite</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
  <?php
     $bdd = "koulai001_bd"; // Base de données
     $host = "lakartxela.iutbayonne.univ-pau.fr";
@@ -39,24 +51,48 @@
             $qte = $_SESSION["_".$idBD];
             $total += $prix * $qte;
             $nombreArticle += $qte;
-            print "<div class=\"card mb-3\">
-                                <div class=\"card-header\">
-                                    $modele
+            print "<tr>
+                        <td><img class=img-thumbnail src='images/$idBD.png'></td>
+                        <td>$modele</td>
+                        <td>$marque</td>
+                        <td>$prix</td>
+                        <td>$qte</td>
+                        <!--    <td><button onclick=window.location.href='retirerPanier.php?id=$idBD' class=\"btn btn-primary\">Retirer du panier</button></td>-->
+                        <td><button class=\"btn btn-primary\" data-bs-toggle='modal' data-bs-target='#fRetirer_$idBD'>Retirer du panier</button></td>
+                        
+                        <div class='modal fade' id='fRetirer_$idBD' tabindex='-1' aria-labelledby='Retirer' aria-hidden='true'>
+                        <div class='modal-dialog'>
+                            <div class='modal-content'>
+                                <div class='modal-header'>
+                                    <h1 class='modal-title fs-5' id='fRetirerLabel_$idBD'>Retirer du panier</h1>
+                                    <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Annuler'></button>
                                 </div>
-                                <ul class=\"list-group list-group-flush\">
-                                    <li class=\"list-group-item\"><img src='vignettes/$idBD.png'></li>
-                                    <li class=\"list-group-item\">$prix</li>
-                                    <li class=\"list-group-item\">$qte</li>
-                                    <li id=\"btnRetirer_$idBD\" class=\"list-group-item\"><button onclick=window.location.href='retirerPanier.php?id=$idBD' class=\"btn btn-primary\">Retirer du panier</button></li>
-                                    
-                                </ul>
-                            </div>";
+                                <div class='modal-body'>
+                                    <form action=retirerPanier.php?id=$idBD method=POST>
+                                        <img src='images/$idBD.png'><hr>
+                                        Nombre de <b>$modele</b> à retirer :
+                                        <input type='number' name='qte' min='1' max='$qte'><br>
+                                        <input type='submit' class='btn btn-success' value=Retirer>
+                                    </form>
+                                </div>
+                                <div class='modal-footer'>
+                                    <button type='button' class='btn btn-primary' data-bs-dismiss='modal'>Annuler</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        
+                    </tr>";
         }
     }
-
+?>
+    </tbody>
+</table>
+    <?php
     if ($total > 0){
         print "<p class=fs-4>Nombre d'article(s) : ". $nombreArticle ."<br> Total = ".$total."€</p>";
-        print "<button class='btn text-bg-success' onclick=window.location.href='paiement.php';>Payer</button>";
+        print "<button class='btn text-bg-success position-absolute start-50 translate-middle' onclick=window.location.href='paiement.php';>Payer</button>";
     }
     else{
         print "<p class=fs-4>Panier vide</p>";
@@ -68,3 +104,8 @@
     <p>Ce site est un projet réalisé par OULAI Kevin et ROSALIE Thibault</p>
     <p>Dans le cadre de la ressource R3.01 : Développement web</p>
 </footer>
+<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+<script src="node_modules/jquery/dist/jquery.js"></script>
+<script src="node_modules/datatables.net/js/dataTables.js"></script>
+<script src="node_modules/datatables.net-bs5/js/dataTables.bootstrap5.js"></script>
+<script src="JS/script.js"></script>

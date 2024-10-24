@@ -14,9 +14,9 @@
     $link = mysqli_connect($host,$user,$pass,$bdd) or die( "Impossible de se connecter à la base de données<br>");
 
 
-    $id = $_POST["id"];
-    $modele = $_POST["marque"];
-    $marque = $_POST["modele"];
+    $id = $_GET["id"];
+    $modele = $_POST["modele"];
+    $marque = $_POST["marque"];
     $prix = $_POST["prix"];
 
 
@@ -28,6 +28,7 @@
         unlink("$dir/$name");
         unlink("vignettes/$nameVign");
         move_uploaded_file($_FILES["photo"]["tmp_name"], "$dir/$name");
+
         // Génération de la vignette pour la photo upload
         $monImage = loadVignette("$dir/$name");
         imagepng($monImage, "vignettes/$nameVign");

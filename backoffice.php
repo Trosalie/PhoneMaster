@@ -68,9 +68,8 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
                                     <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Annuler'></button>
                                 </div>
                                 <div class='modal-body'>
-                                    <form ENCTYPE='multipart/form-data' action=modificationBD.php method=POST>
-                                    <img src='images/$id.png'><hr>
-                                        ID : <input type=text name=id value='$id' class=form-control readonly=readonly><br>
+                                    <form ENCTYPE='multipart/form-data' action=modificationBD.php?id=$id method=POST>
+                                        <img src='images/$id.png'><hr>
                                         Modele : <input type=text name=modele value='$modele' class=form-control><br>
                                         Marque : <input type=text name=marque value='$marque' class=form-control><br>
                                         Prix : <input type=text name=prix value='$prix' class=form-control><br>
