@@ -33,15 +33,18 @@
             print "Veuillez renseigner tout les champs";
         }
         else{
+
             $usersJson = file_get_contents("usersclient.json");
             $users = json_decode($usersJson, true);
             $valid = true;
+            // On vérifie que le login est libre
             foreach($users as $user => $pwd){
                 if($_POST["username"] == $user){
                     $valid = false;
                 }
             }
             if($valid){
+                // On va ajouter le mot de passe préalablement chiffré dans un json
                 $users[$_POST["username"]] = password_hash($_POST["password"], PASSWORD_DEFAULT);
                 json_encode($users);
                 $updatedUsers = json_encode($users);

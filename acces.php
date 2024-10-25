@@ -1,4 +1,5 @@
 <?php
+// On récupere le mode de connection
     if(isset($_GET['mode'])) {
         $mode = $_GET['mode'];
     }
@@ -21,6 +22,7 @@
                     <div class="card text-black" style="border-radius: 1rem;">
                         <div class="card-body p-5 text-center">
                             <?php
+                            // On adapte le message en fonction du mode de connexion
                             if($mode == "signin"){
                                 print "<p class='text-success'>Compte crée avec succes !</p>";
                                 $mode = "client";
@@ -35,10 +37,12 @@
                             }
                             ?>
                                 <div class="mb-3">
+<!--                                    Input de saisie de lon-->
                                     <label class="form-label">Nom d'utilisateur :</label>
                                     <input type="text" name="login" class="form-control">
                                 </div>
                                 <div class="mb-3">
+<!--                                    Input de saisie du mot de passe-->
                                     <label class="form-label">Mot de passe :</label>
                                     <input type="password" name="pwd" class="form-control">
                                     <br/><br/>

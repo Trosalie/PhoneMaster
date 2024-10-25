@@ -1,4 +1,5 @@
 <?php
+// Verification de connexion et du mode de login
 session_start();
 if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
     header("location: index.php");
@@ -35,6 +36,7 @@ elseif ($_SESSION['mode'] != "admin"){
         </thead>
         <tbody>
 <?php
+// Connexion à la base de données
     $bdd = "koulai001_bd"; // Base de données 
     $host = "lakartxela.iutbayonne.univ-pau.fr";
     $user = "koulai001_bd"; // Utilisateur 
@@ -42,6 +44,7 @@ elseif ($_SESSION['mode'] != "admin"){
     $nomtable = "Telephone"; /* Connection bdd */ 
     $link = mysqli_connect($host,$user,$pass,$bdd) or die( "Impossible de se connecter à la base de données<br>");
 
+    // Requete de selection
     $query = "SELECT * FROM $nomtable";
     $resultat = mysqli_query($link,$query);
 

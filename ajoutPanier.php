@@ -1,4 +1,5 @@
 <?php
+    $URL = $_SERVER["HTTP_REFERER"];
     session_start();
     if (!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
         header("location: index.php");
@@ -17,4 +18,5 @@
     else{
         $_SESSION[$id] = 1;
     }
-    echo '<meta http-equiv="refresh" content="0;URL=index.php">';
+
+    echo "<meta http-equiv='refresh' content=\"0;URL=$URL\">";

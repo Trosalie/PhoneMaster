@@ -29,6 +29,7 @@
 ?>
     <nav class="btn-toolbar justify-content-between" role="toolbar">
     <?php
+    // On adapte l'entete si l'utilisateur est connecté
     if (!$connected){
         print "
         <button class=\"btn text-bg-secondary\" onclick=window.location.href='acces.php?mode=client'>Se connecter</button>
@@ -42,7 +43,7 @@
                 </nav>
                 <h1 class=\"fs-1 text-center fw-bolder\"> Bonjour ". $_SESSION['login'] ." ! </h1>";
     }
-
+    // On affiche tout les produits
     $query = "SELECT * FROM $nomtable";
     $resultat = mysqli_query($link,$query);
     print "<div id=zone_cartes class=\"row row-cols-3\">";
@@ -53,12 +54,12 @@
         $prix =  $donnee["prix"] . " €";
         print "
                 <div class='card col mb-3' style='width: 18rem;'>
-                    <a data-bs-toggle='modal' data-bs-target='#fenetre_$id'><img src='loadVignette.php?id=$id' class='card-img-top' alt='. . .'></a>
+                    <a data-bs-toggle='modal' data-bs-target='#fenetre_$id'><img src='loadVignette.php?id=$id' class='card-img-top' alt='. . .'>
                     <div class='card-body'>
                         <h5 class='card-title'>$modele</h5>
                         <button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#fenetre_$id'>
                             Informations
-                        </button>
+                        </button></a>
                     </div>
                 </div>
 
@@ -79,6 +80,7 @@
                                 <div class='modal-footer'>
                                     <button type='button' class='btn btn-primary' data-bs-dismiss='modal'>Fermer</button>
                                 ";
+        // On autorise l'ajout au panier uniquement si l'utilisateur est connecté
         if($connected){
         print"              <button class=\"btn text-bg-secondary\" onclick=\"window.location.href='ajoutPanier.php?id=$id';\">Ajouter au panier</button>
                         </div>

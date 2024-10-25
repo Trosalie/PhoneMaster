@@ -17,10 +17,12 @@
     $link = mysqli_connect($host,$user,$pass,$bdd) or die( "Impossible de se connecter à la base de données<br>");
     $id = $_GET['ID'];
 
+    // On supprime l'image associée
     $dir = "images";
     $imagePath = $dir."/".$id.".png";
     unlink($imagePath);
 
+    // On prépare la requete de sélection
     $query = $link->prepare("DELETE FROM `Telephone` WHERE `id` = (?)");
     $query->bind_param('i',$id);
     $query->execute();

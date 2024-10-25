@@ -1,3 +1,28 @@
+<?php
+    session_start();
+     if(!isset($_SESSION['login']) || !isset($_SESSION['pwd'])){
+         header("location: index.php");
+         exit();
+     }
+     elseif ($_SESSION['mode'] != "client"){
+         header("location: backoffice.php");
+         exit();
+     }
+
+    $bdd = "koulai001_bd"; // Base de données
+    $host = "lakartxela.iutbayonne.univ-pau.fr";
+    $user = "koulai001_bd"; // Utilisateur
+    $pass = "koulai001_bd"; // mp
+    $nomtable = "Telephone"; /* Connection bdd */
+    $link = mysqli_connect($host,$user,$pass,$bdd) or die( "Impossible de se connecter à la base de données<br>");
+    $total = 0;
+    $nombreArticle = 0;
+
+     $query = "SELECT * FROM $nomtable";
+     $resultat = mysqli_query($link,$query);
+    ?>
+
+
 <html lang="fr"> <head>
     <link rel='stylesheet' type='text/css' href='node_modules\bootstrap\dist\css\bootstrap.css'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -11,7 +36,9 @@
             <div class="col-md-7 col-lg-5 col-xl-4">
                 <div class="card" style="border-radius: 15px;">
                     <div class="card-body p-4">
+<!--                        Formulaire de paiment -->
                         <form action="paiement.php" method="post">
+<!--                            Input de saisie du nom -->
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <div data-mdb-input-init class="form-outline">
                                     <input class="form-control form-control-lg" id="typeNom" type="text" placeholder="Nom"/>
@@ -19,24 +46,28 @@
                                 </div>
                             </div>
                             <div class="row">
+<!--                                Input de saisie du numéro de carte -->
                                 <div class="d-flex justify-content-between align-items-center mb-3 col">
                                     <div data-mdb-input-init class="form-outline">
                                         <input type="text" pattern="[^a-zA-Z]+" id="typeText" name="numeroCarte" class="form-control form-control-lg" size="17"
                                                placeholder="1234567890123457" minlength="16" maxlength="16"/>
                                         <label class="form-label" for="typeText">Numéro de carte</label>
                                     </div>
+<!--                                    Icone -->
                                     <div class="d-flex justify-content-between align-items-end pb-4 ms-5 col">
                                         <h1> <i class="bi bi-credit-card"></i></h1>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
+<!--                                Input de saisie de la date d'expiration -->
                                 <div class="d-flex justify-content-between align-items-center pb-2 col">
                                     <div data-mdb-input-init class="form-outline">
                                         <input type="date" id="typeExp" name="dateExp" class="form-control form-control-lg"/>
                                         <label class="form-label" for="typeExp">Expiration</label>
                                     </div>
                                 </div>
+<!--                                Input de saisie du CVV/CVC-->
                                 <div class="d-flex justify-content-between align-items-center pb-2 col">
                                     <div data-mdb-input-init class="form-outline">
                                         <input class="form-control form-control-lg" id="typeCVV" type="password" placeholder="***" minlength="3" maxlength="3" pattern="[^a-zA-Z]+">
@@ -50,15 +81,19 @@
 
                             <?php
                                 if(isset($_POST["numeroCarte"]) and isset($_POST["dateExp"])){
+                                    // On récupère le 1er et le dernier chiffre du numéro de carte saisi
                                     $fin = substr($_POST["numeroCarte"], -1);
                                     $debut = substr($_POST["numeroCarte"], 0, 1);
 
+                                    // On crée la date minimum, soit la date du jour + 3 mois
                                     $jour = New DateTime('now');
                                     $jour->modify('+3 month');
                                     $jour = $jour->format("y-m-d");
 
+                                    // On récupere la date saisie
                                     $dateExp= $_POST["dateExp"];
 
+                                    // On effectue les comparaisons
                                     if($fin != $debut){
                                         print "<p class='text-danger'>Numéro de carte érroné</p>";
                                     }
@@ -66,7 +101,15 @@
                                         if(strtotime($dateExp) < strtotime($jour)) {
                                             print "<p class='text-danger'>Date d'expiration invalide</p>";
                                         }
-                                        else{
+                                        else {
+                                            while ($donnee = mysqli_fetch_assoc($resultat)) {
+                                                $idBD = $donnee["id"];
+
+                                                if (isset($_SESSION["_" . $idBD]) && $_SESSION["_" . $idBD] > 0) {
+                                                    $_SESSION["_$idBD"] = 0;
+                                                }
+
+                                            }
                                             print "<p class='text-success'>Paiement valide</p>";
                                         }
                                     }

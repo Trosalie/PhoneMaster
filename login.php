@@ -9,7 +9,7 @@
     if (isset($_POST['login']) && isset($_POST['pwd'])) {
         // on vérifie les informations saisies
         foreach($users as $user => $hash_pwd) {
-            if ($user == $_POST['login'] and password_verify($_POST['pwd'], $hash_pwd)) {
+            if ($user == $_POST['login'] and password_verify($_POST['pwd'], $hash_pwd)) { // On utilise la fonction pour verifier le hash
                 session_start();
                 $_SESSION['login'] = $_POST['login'];
                 $_SESSION['pwd'] = $_POST['pwd'];

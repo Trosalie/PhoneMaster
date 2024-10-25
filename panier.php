@@ -64,7 +64,7 @@
                         <td>$modele</td>
                         <td>$marque</td>
                         <td>$prix</td>
-                        <td>$qte</td>
+                        <td><button class='btn btn-danger' onclick=window.location.href='retirerPanier.php?id=$idBD';>-</button> <label class='fs-6'>$qte</label> <button class='btn btn-success' onclick=window.location.href='ajoutPanier.php?id=$idBD';>+</button></td>
                         <!--    <td><button onclick=window.location.href='retirerPanier.php?id=$idBD' class=\"btn btn-primary\">Retirer du panier</button></td>-->
                         <td><button class=\"btn btn-primary\" data-bs-toggle='modal' data-bs-target='#fRetirer_$idBD'>Retirer du panier</button></td>
                         

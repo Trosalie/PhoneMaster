@@ -2,10 +2,16 @@
     session_start();
 
     $id = "_". $_GET['id'];
-    $qte = $_POST['qte'];
+
 
     if(isset($_SESSION[$id])){
-        $_SESSION[$id]-=$qte;
+        if(isset($_POST['qte'])) {
+            $qte = $_POST['qte'];
+            $_SESSION[$id] -= $qte;
+        }
+        else{
+            $_SESSION[$id]--;
+        }
     }
 
 echo "<meta http-equiv=refresh content=0;URL=panier.php>";
